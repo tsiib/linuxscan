@@ -28,6 +28,8 @@ import re
 
 
 # Scan Time Elapser
+#from urllib.parse import urlsplit
+
 intervals = (
     ('h', 3600),
     ('m', 60),
@@ -47,7 +49,7 @@ def display_time(seconds, granularity=3):
 def url_maker(url):
 	if not re.match(r'http(s?)\:', url):
 		url = 'http://' + url
-	parsed = urlsplit(url)
+	parsed = (url)
 	host = parsed.netloc
 	if host.startswith('www.'):
 		host = host[4:]
@@ -752,7 +754,7 @@ else:
 				print "\t"+bcolors.BG_ERR_TXT+".RapidScan was terminated abruptly..."+bcolors.ENDC
 				sys.exit(1)
 			if "not found" in val:
-		#		print "\t"+bcolors.OKBLUE+tools_precheck[rs_avail_tools][arg1]+bcolors.ENDC+bcolors.BADFAIL+"...unavailable."+bcolors.ENDC
+				print "\t"+bcolors.OKBLUE+tools_precheck[rs_avail_tools][arg1]+bcolors.ENDC+bcolors.BADFAIL+"...unavailable."+bcolors.ENDC
 				for scanner_index, scanner_val in enumerate(tool_names):
 					if scanner_val[2] == tools_precheck[rs_avail_tools][arg1]:
 						scanner_val[3] = 0 # disabling scanner as it's not available.
@@ -760,8 +762,9 @@ else:
 						unavail_tools = unavail_tools + 1
 			else:
 				print "\t"+bcolors.OKBLUE+tools_precheck[rs_avail_tools][arg1]+bcolors.ENDC+bcolors.OKGREEN+"...available."+bcolors.ENDC
-        rs_avail_tools = rs_avail_tools + 1
-	clear()
+                        rs_avail_tools = rs_avail_tools + 1
+         	#clear()
+
         unavail_tools_names = list(set(unavail_tools_names))
         if unavail_tools == 0:
         	print "\t"+bcolors.OKGREEN+".All Scanning Tools are available. All vulnerability checks will be performed by RapidScan."+bcolors.ENDC

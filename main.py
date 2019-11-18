@@ -99,7 +99,7 @@ def handle_data():
             #merger.write("Report0.pdf")
             #merger.close()
 
-        # return flask.Response(inner(), mimetype='text/html')
+        #return flask.Response(inner(), mimetype='text/html')
 
         return flask.render_template("handle_data.html", response=inner(), language='Python', framework='Flask')
         # env = Environment(loader=FileSystemLoader('templates'))
