@@ -54,7 +54,7 @@ def handle_data():
         def inner():
             res = ['python2', 'rapidscan.py', url]
 
-            a = subprocess.Popen(res, shell=True, stdout=subprocess.PIPE,
+            a = subprocess.Popen(" ".join(res), shell=True, stdout=subprocess.PIPE,
                                  stderr=subprocess.PIPE,
                                  stdin=subprocess.PIPE,
                                  )
@@ -101,14 +101,14 @@ def handle_data():
 
         #return flask.Response(inner(), mimetype='text/html')
 
-        return flask.render_template("handle_data.html", response=inner(), language='Python', framework='Flask')
-        # env = Environment(loader=FileSystemLoader('templates'))
-        # tmp1 = env.get_template('handle_data.html')
+        #return flask.render_template("handle_data.html", response=inner(), language='Python', framework='Flask')
+        env = Environment(loader=FileSystemLoader('templates'))
+        tmp1 = env.get_template('handle_data.html')
         # css_url = url_for('static', filename='css/template.css')
         # was_url = url_for(filename='was.html')
         # waf_url = url_for(filename='waf.html')
         # handle_url = url_for(filename='handle_data.html')
-        # return flask.Response(tmp1.generate(response=inner()), mimetype='text/html')
+        return flask.Response(tmp1.generate(response=inner()), mimetype='text/html')
 
         # return flask.Response(tmp1.generate(response=response if response is None else response()))
 
